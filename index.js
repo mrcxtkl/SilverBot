@@ -14,8 +14,7 @@ client.on('message', message => {
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/g);
 	const cmd = args.shift().toLowerCase();
-
-	const command = client.commands.find(c => c.name.toLowerCase() === cmd)
+	const command = client.commands.find(c => c.name === cmd)
 	if (command) command.run({ client, message }, ...args)
 })
 

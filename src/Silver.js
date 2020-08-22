@@ -24,6 +24,7 @@ module.exports = class Silver extends Client {
 
       for (const command of commands) {
         const cmd = new (require(`../${path}/${category}/${command}`))(this)
+        this.commands.push(cmd)
       }
       this.log(`Os comandos da categoria ${category} foram adicionados`, { tags: ['Commands'], options: ['white', 'dim'] })
     }
