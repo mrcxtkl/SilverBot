@@ -1,5 +1,14 @@
+# Installed modules
 /node_modules
 
+# Envirioment vars
 .env
 
+# Yarn files
 yarn.lock
+yarn-error.log
+
+# Lavalink files
+Lavalink.jar
+application.yml
+/logs

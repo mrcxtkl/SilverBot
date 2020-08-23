@@ -8,6 +8,7 @@ module.exports = class Silver extends Client {
     this.commands = []
 
     this.loadCommands()
+    this.loadEvents()
   }
 
   log(message, { tags = [], options = ['white'] } = {}) {
@@ -17,10 +18,10 @@ module.exports = class Silver extends Client {
   }
 
   loadCommands(path = './src/commands') {
-    const categories = readdirSync(`${path}/`)
+    const categories = readdirSync(path)
 
     for (const category of categories) {
-      const commands = readdirSync(`${path}/${category}/`)
+      const commands = readdirSync(`${path}/${category}/`).filter(d => d.endsWith('.js'))
 
       for (const command of commands) {
         const cmd = new (require(`../${path}/${category}/${command}`))(this)
@@ -28,5 +29,19 @@ module.exports = class Silver extends Client {
       }
       this.log(`Os comandos da categoria ${category} foram adicionados`, { tags: ['Commands'], options: ['white', 'dim'] })
     }
+  }
+
+  loadEvents(path = './src/events') {
+    const categories = readdirSync(path)
+
+    for (const category of categories) {
+    const events = readdirSync(`${path}/${category}/`).filter(d => d.endsWith('.js'))
+
+     for (const event of events) {
+       const evt = new (require(`../${path}/${category}/${event}`))(this)
+       this.on(evt.name, evt.run)
+     }
+     this.log(`Os eventos da categoria ${category} foram adicionados`, { tags: ['Events'], options: ['white', 'dim'] })
+   }
   }
 }

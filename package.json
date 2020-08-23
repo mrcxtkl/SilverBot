@@ -5,10 +5,12 @@
   "author": "mrcxtkl",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --exec node -r dotenv/config index.js"
+    "start": "concurrently -p [{name}] -n \"Lavalink,Bot\" \"java -jar Lavalink.jar\" \"node index.js\"",
+    "dev": "concurrently -p [{name}] -n \"Lavalink,Bot\" -c \"red.bold,green.bold\" \"java -jar Lavalink.jar\" \"nodemon --exec node -r dotenv/config index.js\""
   },
   "dependencies": {
     "chalk": "^4.1.0",
+    "concurrently": "^5.3.0",
     "discord.js": "^12.3.1"
   },
   "devDependencies": {
