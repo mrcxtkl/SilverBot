@@ -7,7 +7,7 @@ module.exports = class SayCommand extends Command {
     })
   }
 
-  run ({ channel }, ...text) {
+  run ({ channel }, args) {
     channel.send(text)
   }
 }

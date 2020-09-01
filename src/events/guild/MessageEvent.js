@@ -16,6 +16,6 @@ module.exports = class MessageEvent extends Event {
     	const args = message.content.slice(prefix.length).trim().split(/ +/g);
     	const cmd = args.shift().toLowerCase();
     	const command = this.commands.find(c => c.name === cmd)
-    	if (command) command.run({ client: this, message, ...message }, ...args)
+    	if (command) command.run({ client: this, message, ...message }, args)
   }
 }
